@@ -45,22 +45,22 @@ export const createMenu = (rootPath, routes, permissions) => {
             }
           })
         }
-
-        if( underMenu.length !== 0 ) {
-          menu.push({
-            icon: subMenu.icon,
-            name: subMenu.name,
-            path: `${rootPath}${subMenu.path}`,
-            routes: underMenu,
-          });
-        }
         // 还需要在这里，处理 面包屑
         breadcrumb[`${rootPath}${subMenu.path}`] = {
           name: subMenu.name,
           icon: subMenu.icon,
         }
+      });
 
-      })
+      if( underMenu.length !== 0 ) {
+        menu.push({
+          icon: subMenu.icon,
+          name: subMenu.name,
+          path: `${rootPath}${subMenu.path}`,
+          routes: underMenu,
+        });
+      }
+
     } else {
       menu.push({
         icon: subMenu.icon,
@@ -99,8 +99,7 @@ export const recursiveMenu = (routes, permissions = []) => {
     });
     if( route.routes ) {
       // 说明应该处理 breadcrumb
-      const sidebar = createMenu(path, route.routes);
-      sideMenu[path] = sidebar;
+      sideMenu[path] = createMenu(path, route.routes);
 
       breadcrumb[path] = {
         name: route.name,
