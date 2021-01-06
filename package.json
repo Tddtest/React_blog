@@ -13,7 +13,7 @@
     "@types/react-dom": "^16.9.0",
     "@types/redux-logger": "^3.0.8",
     "antd": "^4.3.3",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "classnames": "^2.2.6",
     "connected-react-router": "^6.8.0",
     "crypto-js": "^4.0.0",
